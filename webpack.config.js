@@ -1,41 +1,45 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
   return {
-    entry: "./src/index.jsx",
+    entry: './src/index.jsx',
     output: {
-      filename: "main.js",
-      path: path.resolve(__dirname, "dist"),
+      filename: 'main.js',
+      path: path.resolve(__dirname, 'dist'),
     },
-    mode: (env && env.NODE_ENV) || "development",
+    mode: (env && env.NODE_ENV) || 'development',
     module: {
       rules: [
         {
           test: /\.js(x?)$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
           },
+        },
+        {
+          test: /\.s[ac]ss$/,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
         },
       ],
     },
     resolve: {
-      extensions: [".js", ".jsx", ".json"],
+      extensions: ['.js', '.jsx', '.json', '.scss'],
     },
     devServer: {
-      publicPath: "/dist/",
-      contentBase: path.join(__dirname, "public"),
+      publicPath: '/dist/',
+      contentBase: path.join(__dirname, 'public'),
       port: 8800,
       hot: true,
     },
-    devtool: "source-map",
+    devtool: 'source-map',
     plugins: [
       new HtmlWebpackPlugin({
-        title: "Mini Bid",
-        filename: path.resolve(__dirname, "public/index.html"),
-        reactWrapperId: "app",
-        template: path.resolve(__dirname, "src/pages/template/index.html"),
+        title: 'Mini Bid',
+        filename: path.resolve(__dirname, 'public/index.html'),
+        reactWrapperId: 'app',
+        template: path.resolve(__dirname, 'src/pages/template/index.html'),
       }),
     ],
   };
