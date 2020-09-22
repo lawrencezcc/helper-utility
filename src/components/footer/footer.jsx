@@ -1,7 +1,9 @@
 import React from 'react';
+import { Layout } from 'antd';
+const { Footer } = Layout;
 
 import './style/index';
 
-export const Footer = (props) => {
-  return <footer className="footer">Footer</footer>;
+export const FooterWrapper = (props) => {
+  return <Footer className="footer">Footer</Footer>;
 };

@@ -22,6 +22,24 @@ module.exports = (env) => {
           test: /\.s[ac]ss$/,
           use: ['style-loader', 'css-loader', 'sass-loader'],
         },
+        {
+          test: /\.less$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'less-loader',
+              options: {
+                lessOptions: {
+                  modifyVars: {
+                    'layout-header-background': '#fff',
+                  },
+                  javascriptEnabled: true,
+                },
+              },
+            },
+          ],
+        },
       ],
     },
     resolve: {
